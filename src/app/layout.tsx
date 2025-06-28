@@ -13,7 +13,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body className="bg-radial from-primary-200 to-primary-100 font-sans text-primary-600">
+        {children}
+      </body>
     </html>
   );
 }
