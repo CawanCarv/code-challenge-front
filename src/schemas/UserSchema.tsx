@@ -45,7 +45,7 @@ export const firstStepSchema = z.object({
 });
 
 export const secondStepSchema = z.object({
-  zip_code: z.string().length(9, "Zip Code is required"),
+  zipCode: z.string().length(9, "Zip Code is required"),
   address: z
     .string()
     .min(1, "Address is required")
@@ -58,9 +58,9 @@ export const secondStepSchema = z.object({
     .string()
     .min(1, "City is required")
     .max(60, "Character limit exceeded (60)"),
-  state: z.enum(estados),
+  state: z.enum(estados, "State is invalid"),
 });
 
 export const thirdStepSchema = z.object({
-  termsAccepted: z.boolean().parse(true),
+  termsAccepted: z.literal(true, "Terms are mandatory"),
 });
