@@ -20,7 +20,7 @@ export const Form = ({
   });
   const {
     handleSubmit,
-    formState: { isValid, isLoading },
+    formState: { isValid, isSubmitting },
   } = methods;
 
   return (
@@ -36,7 +36,7 @@ export const Form = ({
             className={!isValid ? "bg-red-700" : ""}
             disabled={!isValid}
           >
-            {isLoading ? <FaSpinner className="animate-spin" /> : "Submit"}
+            {isSubmitting ? <FaSpinner className="animate-spin" /> : "Submit"}
           </Button>
         </form>
       </FormProvider>
