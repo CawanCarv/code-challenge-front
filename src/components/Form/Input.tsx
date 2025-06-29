@@ -41,12 +41,13 @@ export const Input = ({
         className="px-2 py-1 border border-primary-800 rounded-sm text-2xl bg-primary-100 placeholder:text-primary-600 text-primary-800 focus:ring focus ring-primary-800 outline-0"
         aria-invalid={!!error}
         aria-describedby={error ? errorId : undefined}
+        id={id}
         {...restRegister}
         {...props}
       />
-      <label id={errorId} className="text-sm text-red-500 font-semibold">
+      <span id={errorId} className="text-sm text-red-500 font-semibold">
         {error}
-      </label>
+      </span>
     </div>
   );
 };
