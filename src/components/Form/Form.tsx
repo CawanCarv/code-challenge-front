@@ -2,6 +2,8 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormProvider, useForm } from "react-hook-form";
 import type { ZodObject } from "zod/v4";
+import { Button } from "../Button";
+import { FaSpinner } from "react-icons/fa";
 
 export const Form = ({
   children,
@@ -13,21 +15,31 @@ export const Form = ({
   formSchema: ZodObject;
 }) => {
   const methods = useForm({
-    mode: "onBlur",
+    mode: "onChange",
     resolver: zodResolver(formSchema),
   });
-  const { handleSubmit } = methods;
+  const {
+    handleSubmit,
+    formState: { isValid, isLoading },
+  } = methods;
 
   return (
     <>
       <FormProvider {...methods}>
         <form
           onSubmit={handleSubmit(submitFunction)}
-          className="flex flex-col gap-4"
+          className="flex flex-col items-center justify-center gap-4"
         >
           {children}
+          <Button
+            type="submit"
+            className={!isValid ? "bg-red-700" : ""}
+            disabled={!isValid}
+          >
+            {isLoading ? <FaSpinner className="animate-spin" /> : "Submit"}
+          </Button>
         </form>
-      </FormProvider>{" "}
+      </FormProvider>
     </>
   );
 };
