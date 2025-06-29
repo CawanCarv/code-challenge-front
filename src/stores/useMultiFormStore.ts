@@ -1,4 +1,5 @@
 import type { User } from "@/types/User";
+import { toSnakeCase } from "@/utils/toSnakeCase";
 import { create } from "zustand";
 
 interface StoreState {
@@ -8,9 +9,11 @@ interface StoreState {
   nextStep: () => void;
   setStep: (newStep: number) => void;
   updateUser: (data: Partial<User>) => void;
+  submitUser: (data: Partial<User>) => Promise<Response>;
+  resetUser: () => void;
 }
 
-export const useMultiFormStore = create<StoreState>((set) => ({
+export const useMultiFormStore = create<StoreState>((set, get) => ({
   step: 1,
   user: {
     fullName: "",
@@ -33,4 +36,32 @@ export const useMultiFormStore = create<StoreState>((set) => ({
     })),
   updateUser: (data: Partial<User>) =>
     set((state) => ({ user: { ...state.user, ...data } })),
+  submitUser: async (data: Partial<User>) => {
+    set((state) => ({
+      user: { ...state.user, ...data },
+    }));
+    const user = get().user;
+    const response = await fetch("/api/users", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(toSnakeCase(user)),
+    });
+
+    return response;
+  },
+  resetUser: () =>
+    set(() => ({
+      step: 1,
+      user: {
+        fullName: "",
+        email: "",
+        phone: "",
+        zipCode: "",
+        address: "",
+        number: "",
+        city: "",
+        state: "",
+        termsAccepted: false,
+      },
+    })),
 }));

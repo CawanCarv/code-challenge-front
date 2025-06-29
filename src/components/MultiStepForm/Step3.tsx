@@ -3,15 +3,32 @@ import { Form } from "../Form/Form";
 import { useMultiFormStore } from "@/stores/useMultiFormStore";
 import type { User } from "@/types/User";
 import { Checkbox } from "../Form/Checkbox";
+import Swal from "sweetalert2";
 
 export const Step3 = () => {
   const user = useMultiFormStore(({ user }) => user);
-  const updateUser = useMultiFormStore(({ updateUser }) => updateUser);
+  const submitUser = useMultiFormStore(({ submitUser }) => submitUser);
+  const resetUser = useMultiFormStore(({ resetUser }) => resetUser);
 
   const onSubmit = async (data: Partial<User>) => {
-    updateUser(data);
-    console.log(user);
-    return;
+    const res = await submitUser(data);
+    if (res.ok) {
+      Swal.fire({
+        icon: "success",
+        title: "Success!",
+        text: "User registered successfully",
+      }).then(() => {
+        resetUser();
+      });
+      return;
+    }
+
+    const error = await res.json();
+    Swal.fire({
+      icon: "error",
+      title: "Error",
+      text: error?.message || "An unexpected error occurred",
+    });
   };
   return (
     <div>
