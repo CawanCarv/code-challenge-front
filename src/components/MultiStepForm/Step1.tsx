@@ -15,7 +15,11 @@ export const Step1 = () => {
   };
 
   return (
-    <Form submitFunction={onSubmit} formSchema={firstStepSchema}>
+    <Form
+      submitFunction={onSubmit}
+      formSchema={firstStepSchema}
+      buttonText="Next"
+    >
       <Input
         name="fullName"
         id="fullName"

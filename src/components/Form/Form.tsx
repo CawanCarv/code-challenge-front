@@ -9,10 +9,12 @@ export const Form = ({
   children,
   submitFunction,
   formSchema,
+  buttonText,
 }: {
   children: React.ReactNode;
   submitFunction: (data: Record<string, unknown>) => void;
   formSchema: ZodObject;
+  buttonText: string;
 }) => {
   const methods = useForm({
     mode: "onChange",
@@ -34,9 +36,9 @@ export const Form = ({
           <Button
             type="submit"
             className={!isValid ? "bg-red-700" : ""}
-            disabled={!isValid}
+            disabled={!isValid || isSubmitting}
           >
-            {isSubmitting ? <FaSpinner className="animate-spin" /> : "Submit"}
+            {isSubmitting ? <FaSpinner className="animate-spin" /> : buttonText}
           </Button>
         </form>
       </FormProvider>

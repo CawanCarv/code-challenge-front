@@ -49,7 +49,11 @@ export const Step3 = () => {
           })}
         </ul>
       </div>
-      <Form submitFunction={onSubmit} formSchema={thirdStepSchema}>
+      <Form
+        submitFunction={onSubmit}
+        formSchema={thirdStepSchema}
+        buttonText="Finish"
+      >
         <Checkbox
           name="termsAccepted"
           id="termsAccepted"

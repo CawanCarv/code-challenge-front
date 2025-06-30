@@ -16,7 +16,11 @@ export const Step2 = () => {
   };
 
   return (
-    <Form submitFunction={onSubmit} formSchema={secondStepSchema}>
+    <Form
+      submitFunction={onSubmit}
+      formSchema={secondStepSchema}
+      buttonText="Next"
+    >
       <Input
         name="zipCode"
         defaultValue={user.zipCode}
