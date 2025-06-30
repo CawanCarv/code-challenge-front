@@ -25,12 +25,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`bg-primary-800 text-primary-100 relative overflow-hidden ${manrope.variable} ${playfairDisplay.variable} font-manrope`}
+        className={`bg-primary-800 text-primary-100 relative ${manrope.variable} ${playfairDisplay.variable} font-manrope`}
       >
         <div
           aria-hidden
-          className="bg-primary-900 w-full aspect-square absolute top-1/6 -right-1/3 -z-10 rounded-[100%] hidden md:block"
-        ></div>
+          className="pointer-events-none overflow-hidden fixed top-0 left-0 w-full h-full -z-10"
+        >
+          <div className="absolute bg-primary-900 w-screen aspect-square top-1/6 -right-1/3 rounded-full" />
+        </div>
         {children}
       </body>
     </html>
