@@ -32,7 +32,7 @@ export const useMultiFormStore = create<StoreState>((set, get) => ({
     set((state) => ({ step: state.step >= 3 ? state.step : state.step + 1 })),
   setStep: (newStep) =>
     set((state) => ({
-      step: state.step > 3 || state.step < 1 ? state.step : newStep,
+      step: newStep > 3 || newStep < 1 ? state.step : newStep,
     })),
   updateUser: (data: Partial<User>) =>
     set((state) => ({ user: { ...state.user, ...data } })),
