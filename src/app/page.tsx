@@ -9,16 +9,24 @@ export default function Home() {
   const setStep = useMultiFormStore((state) => state.setStep);
 
   return (
-    <main className="flex flex-col items-center justify-start gap-4 min-h-screen py-8 px-4">
-      <header>
-        <h1 className="text-3xl uppercase text-primary-800 font-semibold text-center">
+    <main className="flex flex-col md:flex-row items-center justify-start md:justify-around gap-4 min-h-screen py-8 px-4">
+      <header className="flex flex-col md:gap-2">
+        <h1 className="text-3xl md:text-6xl text-secondary-100 text-center md:text-left font-playfair-display">
           Code Challenge
         </h1>
-        <h2 className="text-xl uppercase text-primary-700 font-semibold text-center">
-          MultiStep Form
+        <h2 className="text-lg md:text-2xl text-center md:text-left">
+          Multi-Step Form
         </h2>
       </header>
-      <section className="">
+      <section className="bg-primary-700 p-8 w-full md:w-xl rounded-lg flex flex-col gap-4 shadow-2xl">
+        <header>
+          <h3 className="text-2xl md:text-4xl text-secondary-100 text-center">
+            Register new users
+          </h3>
+          <h4 className="md:text-lg text-center">
+            Fill in the fields below to add a new user to the system.
+          </h4>
+        </header>
         <nav>
           <ul className="flex gap-2">
             {[1, 2, 3].map((key) => (
@@ -28,7 +36,9 @@ export default function Home() {
                 className={`h-2 w-full rounded-full ${
                   step == key && "animate-pulse"
                 } ${
-                  step >= key ? "bg-sky-500 cursor-pointer" : "bg-primary-600"
+                  step >= key
+                    ? "bg-secondary-100 cursor-pointer"
+                    : "bg-primary-600"
                 }`}
               ></li>
             ))}

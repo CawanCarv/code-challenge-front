@@ -27,8 +27,8 @@ export const Checkbox = ({
   const { ...restRegister } = register(name, rules);
 
   return (
-    <div className="flex flex-col gap-0.5">
-      <div className="flex items-center justify-center gap-2">
+    <div className="flex flex-col gap-0.5 w-full">
+      <div className="flex items-center justify-start gap-2">
         <input
           className="h-4 w-4"
           aria-invalid={!!error}
@@ -38,7 +38,10 @@ export const Checkbox = ({
           {...restRegister}
           {...props}
         />
-        <label className="text-lg text-primary-800 font-semibold" htmlFor={id}>
+        <label
+          className="text-lg text-secondary-100 font-semibold"
+          htmlFor={id}
+        >
           {label}
         </label>
       </div>

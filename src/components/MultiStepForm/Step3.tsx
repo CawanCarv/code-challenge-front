@@ -35,12 +35,17 @@ export const Step3 = () => {
       <div>
         <ul>
           {Object.entries(user).map(([attr, value]) => {
-            if (attr != "termsAccepted")
+            if (attr != "termsAccepted") {
+              const label = attr
+                .replace(/([A-Z])/g, " $1")
+                .replace(/^./, (c) => c.toUpperCase()); // fullName -> Full Name
               return (
-                <li key={attr}>
-                  {attr} : {value}
+                <li key={attr} className="flex flex-col">
+                  <span className="text-primary-300">{label}</span>
+                  <span className="text-primary-50">{value as string}</span>
                 </li>
               );
+            }
           })}
         </ul>
       </div>
@@ -48,8 +53,7 @@ export const Step3 = () => {
         <Checkbox
           name="termsAccepted"
           id="termsAccepted"
-          label="Agree with terms"
-          placeholder="Agree with terms"
+          label="I have read and agree to the Terms and Conditions."
         />
       </Form>
     </div>
