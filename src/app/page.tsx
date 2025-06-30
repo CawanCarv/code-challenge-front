@@ -24,7 +24,8 @@ export default function Home() {
             Register new users
           </h3>
           <h4 className="md:text-lg text-center">
-            Fill in the fields below to add a new user to the system.
+            Fill in the fields below to add a new user to the system. You can
+            click previous steps to review or update information.
           </h4>
         </header>
         <nav>
